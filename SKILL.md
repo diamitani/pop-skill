@@ -1,17 +1,7 @@
 ---
 name: pop
 description: >
-  POP (Project Output Planner) — the master project-starter skill for {{COMPANY_NAME}}. Use whenever
-  anyone wants to START, SCOPE, or PLAN a project of any kind and get a complete, formatted
-  output package. Triggers on: "POP", "start a project", "plan a project", "Hey POP", "new
-  project", "scope this project", "I have a project", "help me plan", "turn this into a project",
-  "my boss wants me to", "build a project plan", or any raw ask (prompt + files + links) that
-  should become a planned project. Also triggered by Asana task submissions to the configured
-  intake project. POP runs the input through PAL, interviews the user, researches gaps, and
-  produces: a Project Master Doc (all sections), a JTBD document, a KPI & tracking framework,
-  a project architecture diagram, a hierarchical Build Guide, and an Execution Handoff script
-  with guardrails — plus optional PRD, ELT deck, and Asana export. Built on the ROSTR framework
-  (PAL · JTBD · RAG DAL · NPAO · ContextEngine).
+  POP (Project Output Planner) — the master project-starter skill for Enterprise Platform. Use whenever anyone wants to START, SCOPE, or PLAN a project of any kind and get a complete, formatted output package. Triggers on: "POP", "start a project", "plan a project", "Hey POP", "new project", "scope this project", "I have a project", "help me plan", "turn this into a project", "my boss wants me to", "build a project plan", or any raw ask (prompt + files + links) that should become a planned project. Also triggered by Asana task submissions to the configured intake project. POP runs the input through PAL, interviews the user, researches gaps, and produces: a Project Master Doc (all sections), a JTBD document, a KPI & tracking framework, a project architecture diagram, a hierarchical Build Guide, and an Execution Handoff script with guardrails — plus optional PRD, ELT deck, and Asana export. Built on the ROSTR framework (PAL · JTBD · RAG DAL · NPAO · ContextEngine).
 ---
 
 # POP — Project Output Planner · v2
@@ -81,7 +71,7 @@ When POP detects a new Asana task in the intake project:
 | J | **Build Guide** — hierarchical task tree to project completion | generation | Always |
 | K | **Execution Handoff Script** — agent prompt + guardrails | generation | Always |
 | E | **PRD** | generation | If necessary |
-| F | **Project Overview Doc** — ELT/deck ({{COMPANY_NAME}} 2026 via {{COMPANY_NAME}}-proposal-builder-v2) | generation | If necessary |
+| F | **Project Overview Doc** — ELT/deck (Enterprise Platform 2026 via Enterprise Platform-proposal-builder-v2) | generation | If necessary |
 | G | **Asana tasks & subtasks** — copy-paste / CSV / direct push | generation | If necessary |
 | H | **Sub-skill** — purpose-built repeatable capability | skill-creator (propose→wait) | As needed |
 
@@ -221,7 +211,7 @@ daily/weekly/monthly metrics, dashboard architecture, P&L ownership.
 
 **E · PRD** (if chosen) — `templates/PRD_TEMPLATE.md`.
 
-**F · Project Overview Doc** (if chosen) — `templates/PROJECT_OVERVIEW_TEMPLATE.md`. If deck wanted → `{{COMPANY_NAME}}-proposal-builder-v2`.
+**F · Project Overview Doc** (if chosen) — `templates/PROJECT_OVERVIEW_TEMPLATE.md`. If deck wanted → `Enterprise Platform-proposal-builder-v2`.
 
 **G · Asana tasks** (if chosen) — `templates/ASANA_EXPORT_TEMPLATE.md`. Sections → tasks → subtasks. Copy-paste + CSV. No live MCP writes unless explicitly requested.
 
