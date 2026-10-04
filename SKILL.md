@@ -173,7 +173,8 @@ and feed the framed 100 / 0 / 1 into the artifacts: Master Doc §§1–3 ← the
 the 1-checklist gates; KPI doc ← the monthly scorecard; multipliers 2–99 default to
 NPAO-O until the 1 is reached. Skip the pre-pass for non-venture projects — the
 normal flow is unchanged. (Full contract: `one-must-act` skill,
-`references/pop-handoff.md`, Direction 2.)
+(Full contract lives in the `one-must-act` skill — see its `references/pop-handoff.md`,
+Direction 2.)
 
 ---
 
@@ -280,7 +281,7 @@ guardrails. Every hook is best-effort: use when available, skip silently when no
   treat its sections as pre-answered interview input (100 → north-star outcome;
   1-checklist → definition of done; §4.2 still-open → initial NPAO task list;
   this-week → first Necessity tasks in the Execution Handoff).
-- Full two-way contract lives in the `one-must-act` skill (`references/pop-handoff.md`).
+- Full two-way contract lives in the `one-must-act` skill (its `references/pop-handoff.md`).
 
 ### Jev ecosystem (advisory — never blocking)
 
