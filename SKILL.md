@@ -1,7 +1,17 @@
 ---
 name: pop
 description: >
-  POP (Project Output Planner) — the master project-starter skill for Enterprise Platform. Use whenever anyone wants to START, SCOPE, or PLAN a project of any kind and get a complete, formatted output package. Triggers on: "POP", "start a project", "plan a project", "Hey POP", "new project", "scope this project", "I have a project", "help me plan", "turn this into a project", "my boss wants me to", "build a project plan", or any raw ask (prompt + files + links) that should become a planned project. Also triggered by Asana task submissions to the configured intake project. POP runs the input through PAL, interviews the user, researches gaps, and produces: a Project Master Doc (all sections), a JTBD document, a KPI & tracking framework, a project architecture diagram, a hierarchical Build Guide, and an Execution Handoff script with guardrails — plus optional PRD, ELT deck, and Asana export. Built on the ROSTR framework (PAL · JTBD · RAG DAL · NPAO · ContextEngine).
+  POP (Project Output Planner) — the master project-starter skill for {{COMPANY_NAME}}. Use whenever
+  anyone wants to START, SCOPE, or PLAN a project of any kind and get a complete, formatted
+  output package. Triggers on: "POP", "start a project", "plan a project", "Hey POP", "new
+  project", "scope this project", "I have a project", "help me plan", "turn this into a project",
+  "my boss wants me to", "build a project plan", or any raw ask (prompt + files + links) that
+  should become a planned project. Also triggered by Asana task submissions to the configured
+  intake project. POP runs the input through PAL, interviews the user, researches gaps, and
+  produces: a Project Master Doc (all sections), a JTBD document, a KPI & tracking framework,
+  a project architecture diagram, a hierarchical Build Guide, and an Execution Handoff script
+  with guardrails — plus optional PRD, ELT deck, and Asana export. Built on the ROSTR framework
+  (PAL · JTBD · RAG DAL · NPAO · ContextEngine).
 ---
 
 # POP — Project Output Planner · v2
@@ -71,7 +81,7 @@ When POP detects a new Asana task in the intake project:
 | J | **Build Guide** — hierarchical task tree to project completion | generation | Always |
 | K | **Execution Handoff Script** — agent prompt + guardrails | generation | Always |
 | E | **PRD** | generation | If necessary |
-| F | **Project Overview Doc** — ELT/deck (Enterprise Platform 2026 via Enterprise Platform-proposal-builder-v2) | generation | If necessary |
+| F | **Project Overview Doc** — ELT/deck ({{COMPANY_NAME}} 2026 via {{COMPANY_NAME}}-proposal-builder-v2) | generation | If necessary |
 | G | **Asana tasks & subtasks** — copy-paste / CSV / direct push | generation | If necessary |
 | H | **Sub-skill** — purpose-built repeatable capability | skill-creator (propose→wait) | As needed |
 
@@ -156,6 +166,15 @@ Infer persona from context; load defaults from `scopes/personas.md`. Default = `
 Extract primary intent · domain · subject · constraints · desired output. Show a 2–3 sentence
 **Intent Brief** and confirm before continuing.
 
+**One-must-act pre-pass:** if PAL detects the project is a venture, product, or platform
+plan (a business being built, not a one-off task), run the `one-must-act` skill's
+Workflow steps 1–3 (frame the 100, audit the 0, define the 1) before the interview,
+and feed the framed 100 / 0 / 1 into the artifacts: Master Doc §§1–3 ← the 100 and
+the 1-checklist gates; KPI doc ← the monthly scorecard; multipliers 2–99 default to
+NPAO-O until the 1 is reached. Skip the pre-pass for non-venture projects — the
+normal flow is unchanged. (Full contract: `one-must-act` skill,
+`references/pop-handoff.md`, Direction 2.)
+
 ---
 
 ## STEP 2 — Intake wizard: the 5 envisioning questions
@@ -211,7 +230,7 @@ daily/weekly/monthly metrics, dashboard architecture, P&L ownership.
 
 **E · PRD** (if chosen) — `templates/PRD_TEMPLATE.md`.
 
-**F · Project Overview Doc** (if chosen) — `templates/PROJECT_OVERVIEW_TEMPLATE.md`. If deck wanted → `Enterprise Platform-proposal-builder-v2`.
+**F · Project Overview Doc** (if chosen) — `templates/PROJECT_OVERVIEW_TEMPLATE.md`. If deck wanted → `{{COMPANY_NAME}}-proposal-builder-v2`.
 
 **G · Asana tasks** (if chosen) — `templates/ASANA_EXPORT_TEMPLATE.md`. Sections → tasks → subtasks. Copy-paste + CSV. No live MCP writes unless explicitly requested.
 
@@ -243,3 +262,40 @@ End with a tight summary:
 6. Execution Handoff guardrails are non-negotiable — never weaken them.
 7. Persist state at end so project is resumable.
 8. P&L Ownership must be named explicitly — never leave it blank.
+9. Integrations are advisory: one-must-act and Jev hooks enhance the flow but never
+   block it, override the canonical flow, or weaken the guardrails.
+
+---
+
+## INTEGRATIONS
+
+Additive only — nothing here changes the canonical flow, the v1 Asana rule, or the
+guardrails. Every hook is best-effort: use when available, skip silently when not.
+
+### one-must-act (venture framing)
+
+- **Direction pop → one-must-act:** the Step 1 pre-pass above. When the project is a
+  venture/product/platform plan, frame the 100 / 0 / 1 first, then generate.
+- **Direction one-must-act → pop:** a framed game plan arrives as the raw ask —
+  treat its sections as pre-answered interview input (100 → north-star outcome;
+  1-checklist → definition of done; §4.2 still-open → initial NPAO task list;
+  this-week → first Necessity tasks in the Execution Handoff).
+- Full two-way contract lives in the `one-must-act` skill (`references/pop-handoff.md`).
+
+### Jev ecosystem (advisory — never blocking)
+
+- **Step 3 (RAG DAL):** run retrieved passages through `jev-memory` before reading
+  them in — Jev ranks them, drops the irrelevant, and flags prompt injection.
+- **Step 5, sub-skill check (H):** when unsure which capability a need maps to, use
+  `jev-skill-select` to rank the installed catalog before proposing via skill-creator.
+- **Step 5, Master Doc §9 (Testing Plan):** for backend projects, route the testing
+  plan through `jev-backend-qa` — deterministic full-tree scans (secrets, auth gaps,
+  RLS holes), DB/API/env/payment audits, live smoke tests, Jev-adjudicated
+  pass/warn/block with a fix-loop. A BLOCK verdict means the Build Guide's
+  definition of done is not met.
+- **Step 6 (Handoff):** for long planning threads, use `jev-compaction` to cut the
+  transcript to a fixed-size handoff that keeps decisions and drops noise.
+- **Step 5 (Generate):** the artifact package is token-heavy — use `jev-model-routing`
+  to route cheap turns to cheap models when a routing pool is configured.
+- If any Jev skill reports no key / auth failure, skip it and continue the POP flow
+  unchanged. Never ask the user for a key mid-flow; `jev-setup` owns key setup.
