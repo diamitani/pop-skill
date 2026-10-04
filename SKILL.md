@@ -173,8 +173,8 @@ and feed the framed 100 / 0 / 1 into the artifacts: Master Doc §§1–3 ← the
 the 1-checklist gates; KPI doc ← the monthly scorecard; multipliers 2–99 default to
 NPAO-O until the 1 is reached. Skip the pre-pass for non-venture projects — the
 normal flow is unchanged. (Full contract: `one-must-act` skill,
-(Full contract lives in the `one-must-act` skill — see its `references/pop-handoff.md`,
-Direction 2.)
+(Full two-way contract is described in INTEGRATIONS below; the `one-must-act` skill
+holds the mirror copy.)
 
 ---
 
@@ -242,7 +242,7 @@ daily/weekly/monthly metrics, dashboard architecture, P&L ownership.
 ## STEP 6 — Handoff + persist
 
 Deliver all files, the diagram image, the execution handoff script, and any deck/CSV.
-CACHE via `context-engine`: write project record, regenerate `CONTEXT.md`.
+CACHE via `context-engine`: write project record and regenerate the runtime context file.
 Tell user: "Say 'context flash' to resume this project in a future session."
 
 End with a tight summary:
@@ -281,7 +281,7 @@ guardrails. Every hook is best-effort: use when available, skip silently when no
   treat its sections as pre-answered interview input (100 → north-star outcome;
   1-checklist → definition of done; §4.2 still-open → initial NPAO task list;
   this-week → first Necessity tasks in the Execution Handoff).
-- Full two-way contract lives in the `one-must-act` skill (its `references/pop-handoff.md`).
+- The two-way contract is fully described in this section; the `one-must-act` skill holds the mirror copy.
 
 ### Jev ecosystem (advisory — never blocking)
 
